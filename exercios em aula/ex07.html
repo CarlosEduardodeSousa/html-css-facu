@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let data_hora = new Date();
+        let hora = data_hora.getHours();
+        var previsao_tempo = "Chuvoso";
+
+        if (hora<12){
+            alert("Bom dia!");
+            if (previsao_tempo = "chuvoso"){
+                alert("está chovendo, leve um guarda-chuva")
+            }
+        }
+
+        else if (hora>=12 && hora <18){
+            alert("Boa tarde!")
+        }
+
+        else{
+            alert("Tenha um bom dia!")
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
