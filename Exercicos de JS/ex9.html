@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salário</title>
+    <script>
+        var salario = parseFloat(prompt("Digite o seu salario: "));
+        if (salario < 2500){
+            var novo_salario = salario + (salario * 25/100)
+            document.write("Salário anterior: " + salario + "<br/>");
+            document.write("Salário com o aumento de 25%: " + novo_salario);
+        }
+
+        else{
+            document.write("Salário: " + salario + "<br/>");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
