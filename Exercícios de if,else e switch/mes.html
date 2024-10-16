@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2</title>
+</head>
+<body>
+    <h1>Quantidade de dias no Mês</h1>
+    <script>
+        var mes = parseInt(prompt("Digite um mês (1-12): "));
+        switch (mes){
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+               var dias = 31;
+               break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                dias = 30;
+                break;
+            case 2:
+                dias = 28;
+                break;
+        }
+        document.write("O mês " + mes + " possui: " + dias + " dias!")
+    </script>
+</body>
+</html>

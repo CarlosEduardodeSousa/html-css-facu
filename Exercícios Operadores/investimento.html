@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4</title>
+</head>
+<body>
+    <h1>Investimento</h1>
+    <script>
+        var valor_inicial = parseFloat(prompt("Informe o valor do investimento: "));
+        var taxa_juros = parseFloat(prompt("Informe o valor do juros anual (em %): "));
+        var tempo = parseInt(prompt("Informe o tempo de aplicação (em anos): "));
+        var valor_final = valor_inicial * Math.pow((1 + taxa_juros / 100)), tempo;
+        document.write("O valor final do investimento será R$: " + valor_final)
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 7</title>
+</head>
+<body>
+    <h1>Valor Compra</h1>
+    <script>
+        var preco_unitario = parseFloat(prompt("Informe o preço do produto: "));
+        var quant = parseInt(prompt("Informe a quantidade desse produto: "));
+        var desconto = parseFloat(prompt("Informe o valor do desconto (em %): "));
+        var preco_total = (preco_unitario * quant);
+        desconto = preco_total * desconto/100;
+        var preco_desconto = preco_total - desconto;
+        document.write("Valor do produto sem o desconto: " + preco_total + "<br>")
+        document.write("O valor do produto com o desconto será R$: " + preco_desconto)
+    </script>
+</body>
+</html>

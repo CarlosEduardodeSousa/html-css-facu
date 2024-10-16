@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5</title>
+</head>
+<body>
+    <h1>Caixa Eletrônico</h1>
+    <script>
+        var saldo = parseFloat(prompt("Digite o seu saldo: "));
+        var sacar = parseFloat(prompt("Informe o valor do saque: "));
+        if (sacar <= saldo){
+            var saldo_restante = saldo - sacar
+            document.write("Você sacou R$: " + sacar + "<br>");
+            document.write("Saldo Restante R$: " + saldo_restante);
+        }
+        else {
+            document.write("Saldo Insuficiente!" + "<br>");
+            document.write("Não foi possivel realizar o saque.")
+        }
+    </script>
+</body>
+</html>

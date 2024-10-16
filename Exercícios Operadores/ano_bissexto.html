@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 9</title>
+</head>
+<body>
+    <h1>Ano Bissexto</h1>
+    <script>
+        var ano = parseInt(prompt("Digite um ano qualquer: "));
+        if (ano % 4 === 0 && ano % 100 !== 0 || ano % 400 === 0){
+            document.write("O ano " + ano + " é bissexto")
+        }
+        else{
+            document.write("O ano " + ano + " não é bissexto")
+        }
+    </script>
+</body>
+</html>
