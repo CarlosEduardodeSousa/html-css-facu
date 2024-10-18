@@ -8,7 +8,16 @@
 <body>
     <h1>Fatorial</h1>
     <script>
-      
+        var numero = parseInt(prompt("Digite um número para calcular o fatorial: "));
+
+        var fatorial = 1;
+        var cont = numero;
+
+        while(cont > 0){
+            fatorial= fatorial * cont;
+            cont--
+        }
+        document.write("O fatorial de " + numero + " é: " + fatorial);
     </script>
 </body>
 </html>
