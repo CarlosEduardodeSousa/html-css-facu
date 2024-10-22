@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5</title>
+</head>
+<body>
+    <h1>Caixa Eletrônico</h1>
+    <script>
+        var saldo = 1000;
+        do{
+            var opcao = parseInt(prompt("1.Consultar Saldo\n 2. Fazer Depósito\n 3. Realizar Saque\n 4. sair "))
+
+            switch(opcao){
+                case 1:
+                    alert("O seu saldo atual é R$: " + saldo);
+                    break;
+                case 2:
+                    var deposito = parseFloat(prompt("Digite o valor do depósito R$: "))
+                    if (deposito <= 0){
+                        alert("Valor Invalido!")
+                    }
+                    else{
+                        saldo = saldo + deposito;
+                    }
+                    alert("O seu novo saldo é: " + saldo);
+                    break;
+                case 3:
+                    var saque = parseFloat(prompt("Digite o valor do saque R$: "));
+                    if (saque <= 0){
+                        alert("Valor Invalido!")
+                    }
+                    else if(saque > saldo){
+                        alert("Saldo insuficiente para realizar o saque!")
+                    }
+                    else{
+                        saldo = saldo - saque;
+                        alert("Seu novo saldo é R$: " + saldo);
+                    }
+                    break;
+                case 4:
+                    alert("Saindo... Obrigado por usar o Caixa Eletrônico.")
+                    break;
+            }
+        } while(opcao!==4)
+    </script>
+</body>
+</html>
