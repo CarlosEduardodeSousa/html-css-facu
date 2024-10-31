@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criando Funções Soma - versões diferentes</title>
+    <script>
+        function soma(a,b){
+            return("Soma: " + (a+b) + "</br>");
+        }
+
+        //ou
+        var somav2 = function(a,b){
+            return("Soma " + (a+b) + "</br>");
+        }
+
+        const somav3 = (a,b) =>{
+            return("Soma " + (a+b) + "</br>");
+        }
+    </script>
+</head>
+<body>
+    <h2>Exemplo de Funções</h2>
+    <script>
+        document.write(soma(5,5) + "<br>");
+        document.write(somav2(10,10) + "<br>");
+        document.write(somav3(130,230) + "<br>");
+    </script>
+</body>
+</html>
