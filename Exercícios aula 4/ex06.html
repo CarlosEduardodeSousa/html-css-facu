@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 6</title>
+</head>
+<body>
+    <h2>Calculadora de Pagamento</h2>
+    <form>
+        <label for="preco">Digite o valor do produto:</label>
+        <input type="number" id="preco" placeholder="Valor do produto" step="0.01">
+        <br><br>
+
+        <label for="condicao">Escolha a condição de pagamento:</label>
+        <select id="condicao">
+            <option value="1">1 - À vista (10% de desconto)</option>
+            <option value="2">2 - Cartão (5% de desconto)</option>
+            <option value="3">3 - Parcelado (10% de aumento)</option>
+        </select>
+        <br><br>
+
+        <button type="button" onclick="calcularPagamento()">Calcular Pagamento</button>
+    </form>
+
+    <h3>Resultado:</h3>
+    <textarea id="resultado" rows="4" readonly></textarea>
+
+    <script>
+        function calcularPagamento() {
+            const preco = parseFloat(document.getElementById('preco').value);
+            const condicao = document.getElementById('condicao').value;
+            const resultado = document.getElementById('resultado');
+
+
+
+            let valorFinal;
+            let descontoOuAumento;
+
+            switch (condicao) {
+                case "1":
+                    descontoOuAumento = "10% de desconto";
+                    valorFinal = preco * 0.9;
+                    break;
+                case "2":
+                    descontoOuAumento = "5% de desconto";
+                    valorFinal = preco * 0.95;
+                    break;
+                case "3":
+                    descontoOuAumento = "10% de aumento";
+                    valorFinal = preco * 1.1;
+                    break;
+                default:
+                    resultado.value = "Condição de pagamento inválida.";
+                    return;
+            }
+
+            resultado.value = `Valor original do produto: R$ ${preco.toFixed(2)}\n` +
+                              `Condição de pagamento: ${descontoOuAumento}\n` +
+                              `Valor a ser pago: R$ ${valorFinal.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
