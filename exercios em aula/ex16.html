@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções e Procedimentos</title>
+    <script>
+        function multiplicaA (a,b){
+            alert("Multiplicando no Procedimento = " + (a*b));
+        }
+
+        function multiplicaB (a,b){
+            let result;
+            result = (a*b);
+            return (result);
+            // ou simplesmente: return (a*b);
+        }
+    </script>
+</head>
+<body>
+    <h1>Função e Procedimento</h1>
+    <p>Foi uma demonstração para comparar a função com procedimento</p>
+    <script>
+        let n1, n2, a, b;
+        n1 = prompt("Informe um valor: ");
+        n2 = prompt("Informe outro valor: ");
+
+        a = parseInt(n1);
+        b = parseInt (n2);
+
+        multiplicaA (a,b); // Chamamos o procedimento
+
+        let res = multiplicaB (a,b); // Chamamos a Função
+        alert ("Multiplicação com a função! " + res); 
+    </script>
+</body>
+</html>
