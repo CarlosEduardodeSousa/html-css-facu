@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro de Notas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        label, input {
+            margin: 5px 0;
+        }
+        input[type="number"] {
+            width: 100px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .tabela {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        .tabela th, .tabela td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .tabela th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .aprovado {
+            color: green;
+            font-weight: bold;
+        }
+        .reprovado {
+            color: red;
+            font-weight: bold;
+        }
+        .avaliacao-final {
+            color: orange;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <form id="formCadastro">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+        
+        <label for="rgm">RGM:</label>
+        <input type="text" id="rgm" required>
+        
+        <label for="notaParcial">Nota Parcial (max 2):</label>
+        <input type="number" id="notaParcial" max="2" required>
+        
+        <label for="notaExercicios">Nota Exercícios (max 1):</label>
+        <input type="number" id="notaExercicios" max="1" required>
+        
+        <label for="notaProjeto">Nota Projeto (max 2):</label>
+        <input type="number" id="notaProjeto" max="2" required>
+        
+        <label for="notaRegimental">Nota Regimental (max 5):</label>
+        <input type="number" id="notaRegimental" max="5" required>
+        
+        <button type="button" onclick="cadastrar()">Cadastrar</button>
+        <button type="button" onclick="mostrarDados()">Exibir Dados</button>
+    </form>
+
+    
+    <table class="tabela" id="tabelaDados" style="display: none;">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>RGM</th>
+                <th>Nota Parcial</th>
+                <th>Nota Exercícios</th>
+                <th>Nota Projeto</th>
+                <th>Nota Regimental</th>
+                <th>Nota Final</th>
+                <th>Conceito</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+       
+        const nomes = [];
+        const rgms = [];
+        const notasParcial = [];
+        const notasExercicios = [];
+        const notasProjeto = [];
+        const notasRegimental = [];
+
+       
+        function cadastrar() {
+            const nome = document.getElementById("nome").value;
+            const rgm = document.getElementById("rgm").value;
+            const notaParcial = parseFloat(document.getElementById("notaParcial").value);
+            const notaExercicios = parseFloat(document.getElementById("notaExercicios").value);
+            const notaProjeto = parseFloat(document.getElementById("notaProjeto").value);
+            const notaRegimental = parseFloat(document.getElementById("notaRegimental").value);
+
+            if (nome && rgm && !isNaN(notaParcial) && !isNaN(notaExercicios) && !isNaN(notaProjeto) && !isNaN(notaRegimental)) {
+                nomes.push(nome);
+                rgms.push(rgm);
+                notasParcial.push(notaParcial);
+                notasExercicios.push(notaExercicios);
+                notasProjeto.push(notaProjeto);
+                notasRegimental.push(notaRegimental);
+
+                
+                document.getElementById("formCadastro").reset();
+            } else {
+                alert("Por favor, preencha todos os campos corretamente.");
+            }
+        }
+
+       
+        function calcularNotaFinal(notaP, notaEx, notaProj, notaReg) {
+            return notaP + notaEx + notaProj + notaReg;
+        }
+
+        
+        function obterConceito(notaFinal) {
+            if (notaFinal >= 7) return "Aprovado";
+            if (notaFinal >= 5) return "Avaliação Final";
+            return "Reprovado";
+        }
+
+     
+        function mostrarDados() {
+            const tabela = document.getElementById("tabelaDados");
+            const tbody = tabela.querySelector("tbody");
+            tbody.innerHTML = ""; 
+
+            for (let i = 0; i < nomes.length; i++) {
+                const notaFinal = calcularNotaFinal(notasParcial[i], notasExercicios[i], notasProjeto[i], notasRegimental[i]);
+                const conceito = obterConceito(notaFinal);
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${nomes[i]}</td>
+                    <td>${rgms[i]}</td>
+                    <td>${notasParcial[i]}</td>
+                    <td>${notasExercicios[i]}</td>
+                    <td>${notasProjeto[i]}</td>
+                    <td>${notasRegimental[i]}</td>
+                    <td>${notaFinal.toFixed(1)}</td>
+                    <td class="${conceito.toLowerCase().replace(" ", "-")}">${conceito}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+
+            
+            tabela.style.display = "table";
+        }
+    </script>
+</body>
+</html>

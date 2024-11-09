@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .abas {
+            display: flex;
+            cursor: pointer;
+            background-color: #ddd;
+            padding: 10px;
+        }
+        .aba {
+            padding: 10px 20px;
+            margin-right: 5px;
+            background-color: #ccc;
+            border-radius: 5px 5px 0 0;
+        }
+        .aba.ativa {
+            background-color: #333;
+            color: #fff;
+        }
+        .conteudo {
+            padding: 20px;
+            background-color: #f3f3f3;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .cronometro {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .slideshow img {
+            width: 100%;
+            max-width: 300px;
+            display: none;
+        }
+        .slideshow img.ativo {
+            display: block;
+        }
+        .tabuada-output {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="abas">
+        <div class="aba ativa" onclick="abrirAba(1)">Cronômetro</div>
+        <div class="aba" onclick="abrirAba(2)">Slide Show</div>
+        <div class="aba" onclick="abrirAba(3)">Tabuada</div>
+    </div>
+
+   
+    <div id="conteudo1" class="conteudo" style="display: block;">
+        <div class="cronometro" id="cronometro">0</div>
+    </div>
+
+    
+    <div id="conteudo2" class="conteudo" style="display: none;">
+        <div class="slideshow">
+            <img src="imagem1.jpg" alt="Imagem 1" class="ativo">
+            <img src="imagem2.jpg" alt="Imagem 2">
+            <img src="imagem3.jpg" alt="Imagem 3">
+            <img src="imagem4.jpg" alt="Imagem 4">
+            <img src="imagem5.jpg" alt="Imagem 5">
+        </div>
+        <button onclick="mostrarAnterior()">Anterior</button>
+        <button onclick="mostrarProximo()">Próximo</button>
+    </div>
+
+    
+    <div id="conteudo3" class="conteudo" style="display: none;">
+        <input type="number" id="numero" placeholder="Digite um número">
+        <button onclick="calcularTabuada()">Calcular Tabuada</button>
+        <div id="resultadoTabuada" class="tabuada-output"></div>
+    </div>
+
+    <script>
+       
+        let segundos = 0;
+        let intervalo;
+
+       
+        function iniciarCronometro() {
+            intervalo = setInterval(() => {
+                segundos++;
+                document.getElementById("cronometro").textContent = segundos;
+            }, 1000);
+        }
+
+        
+        function abrirAba(abaNumero) {
+            
+            document.getElementById("conteudo1").style.display = "none";
+            document.getElementById("conteudo2").style.display = "none";
+            document.getElementById("conteudo3").style.display = "none";
+            
+           
+            document.querySelectorAll('.aba').forEach(aba => {
+                aba.classList.remove('ativa');
+            });
+
+            document.getElementById("conteudo" + abaNumero).style.display = "block";
+            document.querySelectorAll('.aba')[abaNumero - 1].classList.add('ativa');
+
+           
+            if (abaNumero === 1) {
+                iniciarCronometro();
+            } else {
+                clearInterval(intervalo);
+            }
+        }
+
+       
+        iniciarCronometro();
+
+      
+        let imagemIndex = 0;
+        const imagens = document.querySelectorAll(".slideshow img");
+
+        function mostrarImagem(index) {
+            imagens.forEach(img => img.classList.remove("ativo"));
+            imagens[index].classList.add("ativo");
+        }
+
+        function mostrarAnterior() {
+            imagemIndex = (imagemIndex - 1 + imagens.length) % imagens.length;
+            mostrarImagem(imagemIndex);
+        }
+
+        function mostrarProximo() {
+            imagemIndex = (imagemIndex + 1) % imagens.length;
+            mostrarImagem(imagemIndex);
+        }
+
+       
+        function calcularTabuada() {
+            const numero = parseInt(document.getElementById("numero").value);
+            const resultadoDiv = document.getElementById("resultadoTabuada");
+            resultadoDiv.innerHTML = ""; 
+
+            if (!isNaN(numero)) {
+                let resultadoHTML = `<strong>Tabuada de ${numero}:</strong><br>`;
+                for (let i = 1; i <= 10; i++) {
+                    resultadoHTML += `${numero} x ${i} = ${numero * i}<br>`;
+                }
+                resultadoDiv.innerHTML = resultadoHTML;
+            } else {
+                resultadoDiv.innerHTML = "Por favor, insira um número válido.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #000000;
+        }
+        .col-par {
+            background-color: green;
+        }
+        .col-impar {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <script>
+       
+        let linhas = parseInt(prompt("Digite o número de linhas da tabela:"));
+        let colunas = parseInt(prompt("Digite o número de colunas da tabela:"));
+
+       
+        if (!isNaN(linhas) && linhas > 0 && !isNaN(colunas) && colunas > 0) {
+            
+            document.write("<table>");
+
+            
+            for (let i = 1; i <= linhas; i++) {
+                document.write("<tr>");
+                for (let j = 1; j <= colunas; j++) {
+                    
+                    let corClasse = (j % 2 === 0) ? "col-par" : "col-impar";
+                    document.write(`<td class="${corClasse}">${i},${j}</td>`);
+                }
+                document.write("</tr>");
+            }
+
+            
+            document.write("</table>");
+        } else {
+            document.write("<p>Entrada inválida. Por favor, recarregue a página e insira valores válidos.</p>");
+        }
+    </script>
+</body>
+</html>
